@@ -1,0 +1,108 @@
+.section-perfiles{
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+}
+.section-perfiles .titulo-perfiles{
+    width: 100%;
+    height: 65px;
+    background-color: #b4b3b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-perfiles .label-perfil{
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 95px;
+}
+/*FORM*/
+.form-perfil-conteiner{
+    width: 100%;
+    height: 130px;
+    /* background-color: #ffb0b0; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 260px;
+}
+.form-perfil-conteiner .form-perfil{
+    display: flex;
+    flex-direction: row;
+    gap: 85px;
+}
+/*Input*/
+.form-perfil-conteiner .form-perfil .input-conteiner{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-perfil-conteiner .form-perfil .input-conteiner input{
+    width: 550px;
+    height: 55px;
+    padding-left: 25px;
+    border-radius: 12px;
+    border:none;
+    font-size: medium;
+    border: 1px solid #b4b3b3;
+    font-weight: bold;
+}
+/*Botones*/
+.form-perfil-conteiner .form-perfil .btn-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding-top: 30px;
+}
+.form-perfil-conteiner .form-perfil .btn-cont .btn-agregar{
+   width: 155px;
+   height: 45px;
+   border: none;
+   border-radius: 20px;
+   background-color: #05aa05;
+   color: #fff;
+   font-size: medium;
+   cursor: pointer;
+}
+.form-perfil-conteiner .form-perfil .btn-cont .btn-agregar:hover{
+   background-color: #068506;
+   
+}
+.form-perfil-conteiner .form-perfil .btn-cont .btn-cancel{
+    width: 155px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: #aa2b05;
+    color: #fff;
+    font-size: medium;
+    cursor: pointer;
+ }
+ .form-perfil-conteiner .form-perfil .btn-cont .btn-cancel:hover{
+    background-color: #852e06;
+    
+ }
+ /*TABLA PERFILES*/
+ .tablaPerfiles-Cont{
+    width: 100%;
+    height: 60%;
+    padding: 0px 155px;
+    /* border: 1px solid #000; */
+ }
+ .tablaPerfiles-Cont .table-title{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .tablaPerfiles-Cont .tablaperfiles{
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+    
+ }

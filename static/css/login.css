@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*------------- NAV ---------------*/
+.headerIn{
+    height: 130px;
+    background-color: #1470DA;
+    border-bottom-right-radius:35px ;
+    border-bottom-left-radius:35px ;
+   
+}
+.headerIn .navIn{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    place-content: center;
+    place-items: center;
+    height: 100%;
+}
+.headerIn .navIn .logo{
+    width: 110px;
+    height: 110px;
+}
+.headerIn .navIn ul li{
+    list-style: none;
+}
+.headerIn .navIn ul li h2{
+    color: #fff;
+    font-size: 45px;
+}
+/*------------- FIN NAV ---------------*/
+
+
+/*------------- Formulario ---------------*/
+
+.form_section{
+    width: 100%;
+    height: 100%;
+    margin: 160px 0;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    
+}
+.form_section .form_contenedor{
+    width: 800px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    border: 1px solid #000;
+    border-radius: 27px;
+
+     /* BOX SHADOW */
+     box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.49);
+     -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.49);
+     -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.49);
+     /* BOX SHADOW */
+    
+}
+/* Parte 1 */
+.form_section .form_contenedor .form_parte1{
+    background: linear-gradient(180deg, #1470DA 0%, #034EA4 100%);
+    
+    border-top-left-radius: 26px;
+    border-bottom-left-radius: 26px;
+}
+.form_section .form_contenedor .form_parte1 .form_items .parte1_img{
+    width: 180px;
+    height: 180px;
+    margin-top: 30px;
+}
+.form_section .form_contenedor .form_parte1 .form_items .parte1_txt{
+    color: #fff;
+    margin: 10px 0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: 100;
+}
+
+.form_section .form_contenedor .form_parte1 .form_items a .parte1_btn{
+    border-radius: 25px;
+    background: #0575E6;
+    color: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    font-family:Verdana;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 600;
+    width: 216px;
+    height: 35px;
+    margin: 30px 0;
+}
+
+.form_section .form_contenedor .form_parte1 .form_items .parte1_btn:hover {
+    background-color: rgb(19, 2, 126);
+    box-shadow: 0px 15px 20px rgba(255, 255, 255, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+.form_section .form_contenedor .form_parte1 .form_items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 40px;
+    height: auto;
+    width: 100%;
+}
+/* Parte 2 */
+.form_section .form_contenedor .form_parte2 .form_items2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.form_section .form_contenedor .form_parte2 .parte2_txt{
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 22px;
+}
+.form_section .form_contenedor .form_parte2 .form_items2 .formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    gap: 25px;
+}
+.form_section .form_contenedor .form_parte2 .form_items2 .formulario .form_group{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px 60px;
+    height: auto;
+    width: 100%;
+    gap: 0.5rem;
+}
+.form_section .form_contenedor .form_parte2 .form_items2 .formulario .form_group .form_input{
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+    background: #D9D9D9;
+    border: none;
+    padding:15px;
+}
+.form_section .form_contenedor .form_parte2 .form_items2 .formulario .form_btn{
+    width: 150px;
+    height: 47px;
+    border-radius: 25px;
+    background: #0575E6;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    color: #fff;
+    font-family:Verdana;
+    font-weight: 700;
+    cursor: pointer;
+}
+.form_section .form_contenedor .form_parte2 .form_items2 .formulario .form_btn:hover{
+    background: #03509d;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    
+}
+.form_section .form_contenedor .form_parte2 .parte2_img{
+    width: 59px;
+    height: 61px;
+}

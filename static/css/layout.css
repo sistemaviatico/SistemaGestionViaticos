@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe IU", sans-serif;;
+}
+
+.all-screen{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    display: grid; 
+    grid-template-columns: 0.6fr 1.4fr 1fr;
+    grid-template-rows: 0.4fr 1.6fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "header header header"
+      "side main main"
+      "side main main"; 
+  }
+  .header { 
+    grid-area: header;
+    border: 1px solid black;
+}
+  .sidebar-section { grid-area: side;
+    /* border: 1px solid black; */
+ }
+  .main { grid-area: main;
+     border: 1px solid black;
+   }
+
+   /* SIDEBAR */
+   .sidebar-section{
+    background-color:#0164FE;
+    color:#fff;
+   }
+   .menu{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    padding: 0 15px;
+    }
+
+   .menu .name-menu{
+    width: 100%;
+    height: 85px;
+    /* border: 1px solid blue; */
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .menu .name-menu h4{
+    font-size: 20px;
+   }
+
+   .menu .menu-item{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+   }
+   .menu .menu-item a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    
+   }
+   .menu .menu-item .option{
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+    padding-left: 25px;
+    /* border: 1px solid black; */
+    border-radius: 15px;
+   }
+   .menu .menu-item .option:hover{
+    background-color: blue;
+    color: white;
+   }
