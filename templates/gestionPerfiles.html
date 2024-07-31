@@ -13,6 +13,7 @@
         <form class="form-perfil" action="/gestionperfiles" method="post">
             <div class="input-conteiner">
                 <label for="">Nombre del perfil</label>
+                <label for="error">{{error}}</label>
                 <input type="text" name="nombre-perfil" id="nombrePerfil" placeholder="Ingrese nombre del perfil"> 
             </div>
             <div class="btn-cont">
@@ -21,7 +22,7 @@
             </div>
         </form>
     </div>
-    {% if request.method == 'GET' %}
+    {% if request.method == 'GET' or reque.method == 'POST' %}
     <div class="tablaPerfiles-Cont">
         <div class="table-title">
             <h3>Listado de perfiles de usuario</h3>
@@ -33,19 +34,49 @@
                         <th>ID Perfil</th>
                         <th>Nombre Perfil</th>
                     </tr>
+                </thead>
                     <tbody>
                         {% for perfil in perfiles %}
                         <tr>
+                            <input type="hidden" name="id_perfil" id="#" value="{{ perfil[0] }}">
                             <td>{{ perfil[0] }}</td>
                             <td>{{ perfil[1] }}</td>
+                            <td>
+                                <button onclick="abrirModalPerfil()">Editar</button>
+                            </td>
+                            <td>
+                                <button>Eliminar</button>
+                            </td>
                         </tr>
-                        {% endfor %}
+                        {% endfor %}    
+
                     </tbody>
-            </table>
+                </table>
+                <!-- Modal Overlay -->
+                <div id="modalOverlay" class="modal-overlay"></div>
+                
+                <!-- Modal -->
+                <div id="myModalPerfil" class="modal">
+                    <div>
+                        <h1 class="title-modal">Editar perfil</h1>
+                        <form action="#" method="post" class="box">
+                           
+                            <label>Nombre Perfil</label>
+                            
+                            <input type="text" name="nuevo_nombrePerfil" id="nuevo_perfil" value="" class="input" />
+                            
+                            <div class="btn-cont">
+                                <button class="btn-ind" type="submit">Actualizar</button>
+                            </div>    
+                            
+                        </form>
+                        <button onclick="cerrarModalPerfil()" class="btn-cerrar">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        
         {% endif %}
-    </div>
     
 </section>
 {% endblock %}

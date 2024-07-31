@@ -1,0 +1,83 @@
+.section-usuarios{
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+.section-usuarios .titulo-usuarios{
+    width: 100%;
+    height: 5%;
+    background-color: #cfc9c9;
+    display: grid;
+    place-content: center;
+}
+.section-usuarios .separacion-container{
+    width: 100%;
+    height: 95%;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr;
+}
+
+.separacion-container .table-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: aquamarine;
+}
+.separacion-container .form_container{
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    
+}
+.separacion-container .form_container .form-usuario{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 85px;
+    background-color: #f0f0f0;
+
+}
+.form_container .form-usuario .inputs-container{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    gap: 15px;
+}
+.form-usuario .inputs-container .input1{
+    width: 100%;
+    height: 50px;
+    border-radius: 20px;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.form_container .form-usuario .inputs-container .select{
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.form_container .btn_form{
+    width: 100%;
+    height: 50px;
+    padding-left: 65%;
+}
+.form_container .btn_form .btn-agregar{
+    width: 145px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #00a708;
+    font-size: 16px;
+    font-weight: bold;
+    color:#fff;
+    border: none;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.26);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.26);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.26);
+}

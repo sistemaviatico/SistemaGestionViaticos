@@ -1,0 +1,108 @@
+.section-cuentas{
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+}
+.section-cuentas .titulo-cuentas{
+    width: 100%;
+    height: 65px;
+    background-color: #b4b3b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-cuentas .label-cuentas{
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 95px;
+}
+/*FORM*/
+.form-cuenta-conteiner{
+    width: 100%;
+    height: auto;
+    /* background-color: #ffb0b0; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 260px;
+    padding-bottom: 85px;
+}
+.form-cuenta-conteiner .form-cuenta{
+    display: flex;
+    flex-direction: row;
+    gap: 85px;
+}
+/*Input*/
+.form-cuenta-conteiner .form-cuenta .input-conteiner{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-cuenta-conteiner .form-cuenta .input-conteiner input{
+    width: 550px;
+    height: 55px;
+    padding-left: 25px;
+    border-radius: 12px;
+    border:none;
+    font-size: medium;
+    border: 1px solid #b4b3b3;
+    font-weight: bold;
+}
+/*Botones*/
+.form-cuenta-conteiner .form-cuenta .btn-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding-top: 30px;
+}
+.form-cuenta-conteiner .form-cuenta .btn-cont .btn-agregar{
+   width: 155px;
+   height: 45px;
+   border: none;
+   border-radius: 20px;
+   background-color: #05aa05;
+   color: #fff;
+   font-size: medium;
+   cursor: pointer;
+}
+.form-cuenta-conteiner .form-cuenta .btn-cont .btn-agregar:hover{
+   background-color: #068506;
+   
+}
+.form-cuenta-conteiner .form-cuenta .btn-cont .btn-cancel{
+    width: 155px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: #aa2b05;
+    color: #fff;
+    font-size: medium;
+    cursor: pointer;
+ }
+ .form-cuenta-conteiner .form-cuenta .btn-cont .btn-cancel:hover{
+    background-color: #852e06;
+    
+ }
+ /*TABLA*/
+ .tabla_cuentas_container{
+    width: 100%;
+    height: 45%;
+    padding: 0px 250px;
+    border: 1px solid #000;
+ }
+ .tabla_cuentas_container .table-cuentas-title{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .tabla_cuentas_container .table-cuentas{
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+}

@@ -31,19 +31,18 @@ def login():
         if request.method == 'POST':
             usuario = request.form.get('usuario')
             clave = request.form.get('clave')
-
+           
             print(usuario)
-            print(clave)
             if usuario == None or clave == None:
-                return render_template("error.html", error="Nombre de usuario o contraseña incorrectos, revise su información")
+                return render_template("login.html", error="Nombre de usuario o contraseña incorrectos, revise su información")
             
             #seleccionar usuario de la bd tabla usuarios
             seleccionar_usuario = text('''SELECT *, p."perfil" FROM public."usuarios" as u INNER JOIN public.perfiles as p ON 
-                                       u."perfilid" = p."perfilid" WHERE "nombreusuario"=:usuario AND "clave"=:clave''')
-            usuario_seleccionado = db.execute(seleccionar_usuario,{'usuario': usuario,'clave':clave}).fetchone()
+                                       u."perfilid" = p."perfilid" WHERE "nombreusuario"=:usuario ''')
+            usuario_seleccionado = db.execute(seleccionar_usuario,{'usuario': usuario}).fetchone()
 
             if(usuario_seleccionado):
-                if (clave == usuario_seleccionado[2] and usuario == usuario_seleccionado[1]):
+                if (check_password_hash(usuario_seleccionado[2], clave) and usuario == usuario_seleccionado[1]):
                     session["usuario_id"] = usuario_seleccionado[0]
                     session["usuario"] = usuario_seleccionado[1]
                     session["perfil"] = usuario_seleccionado[5]
@@ -51,7 +50,7 @@ def login():
                     return render_template("layout.html")
             else:
                 error = "Nombre de usuario o contraseña incorrecta, favor verifique sus datos" 
-                return render_template("error.html", error=error) 
+                return render_template("login.html", error=error) 
             
                 
         return render_template("login.html")     
@@ -63,15 +62,115 @@ def inicio():
 @app.route("/gestionperfiles", methods=["GET", "POST"])
 def gestionarPerfiles():
     if request.method == "GET":
-        #MOSTRAR PERFILES EN SELECT DEL FORM
-        perfiles_query = text('''SELECT * FROM public.perfiles''')
-        perfiles_info = db.execute(perfiles_query).fetchall()
-        
-        return render_template("gestionPerfiles.html", perfiles=perfiles_info)
-    
+        #MOSTRAR PERFILES EN TABLA PERFILES
+        perfilid = request.form.get("id_perfil")
 
+        perfiles_query = text('''SELECT * FROM public.perfiles''')
+        perfiles_info = db.execute(perfiles_query, {}).fetchall()
+
+       
+        return render_template("gestionPerfiles.html",perfiles=perfiles_info)
         
+        
+    else:
+        if request.method == 'POST':
+            #AGREGAR PERFILES
+            nombre_perfil = request.form.get("nombre-perfil")
+            print(nombre_perfil)
+
+            consulta_existenciaPerfiles = text('''SELECT COUNT(*) FROM public."perfiles" WHERE "perfil" = :nombre_perfil''')
+            resultadoPerfiles = db.execute(consulta_existenciaPerfiles,{"nombre_perfil": nombre_perfil}).scalar()
+
+            if resultadoPerfiles > 0:
+                return render_template("error.html", error="El perfil ya existe")
+            else:
+                agregar_perfil = text('''INSERT INTO public.perfiles ("perfil") VALUES (:nombre_perfil)''')
+                db.execute(agregar_perfil,{"nombre_perfil": nombre_perfil})
+                db.commit()
+
+
+
+
+    return redirect("/gestionperfiles")
+
+# @app.route("/editarPerfil", methods=["GET","POST"])
+# def editarperfil():
+#     #EDITAR PERFILES
+#     id_perfil = request.form.get("id_perfil")
+#     nuevo_nombrePerfil = request.form.get("nuevo_nombrePerfil")
+
+#     if request.method == "POST":
+        
+#         actualizarPerfil_Query = text('''UPDATE public."perfiles" SET "perfil" = :nuevoPerfil WHERE "perfilid" = :id_perfil''')
+#         db.execute(actualizarPerfil_Query,{"nuevoPerfil": nuevo_nombrePerfil, "id_perfil":id_perfil})
+#         db.commit()
+
+#     return redirect("/gestionperfiles")
 
 @app.route("/registrarviatico", methods=["GET", "POST"])
 def registrarViatico():
     return render_template("registrarViatico.html")
+
+
+@app.route("/gestioncuentas", methods = ["GET", "POST"])
+def gestionCuentas():
+    if request.method == "GET":
+        #MOSTRAR PERFILES EN TABLA PERFILES
+        cuentaid = request.form.get("id_cuenta")
+
+        cuentas_query = text('''SELECT * FROM public.tipos_viaticos''')
+        cuentas_info = db.execute(cuentas_query, {}).fetchall()
+
+       
+        return render_template("gestionCuentas.html",cuentas=cuentas_info)
+    if request.method == 'POST':
+            #AGREGAR cunetas
+            tipo_cuenta = request.form.get("tipo-cuenta")
+            numero_cuenta = request.form.get("cuenta")
+            print(tipo_cuenta)
+
+            consulta_existenciaCuentas = text('''SELECT COUNT(*) FROM public."tipos_viaticos" WHERE "tipoviatico" = :tipoviatico''')
+            resultadoCuentas = db.execute(consulta_existenciaCuentas,{"tipoviatico": tipo_cuenta}).scalar()
+
+            if resultadoCuentas > 0:
+                return render_template("gestionCuentas.html", error="tipo de cuenta ya existe")
+            else:
+                agregar_cuenta = text('''INSERT INTO public.tipos_viaticos ("tipoviatico", "cuenta") VALUES (:tipoviatico, :cuenta)''')
+                db.execute(agregar_cuenta,{"tipoviatico": tipo_cuenta, "cuenta":numero_cuenta})
+                db.commit()
+            return redirect("/gestioncuentas")
+    
+    return render_template("gestionCuentas.html")
+
+
+#Gestion de usuarios
+@app.route("/gestionusuarios", methods=["GET", "POST"])
+def gestionUsuarios():
+    if request.method == "GET":
+        #MOSTRAR PERFILES EN EL SELECT PERFILES
+        perfilesParaSelect_query = text('''SELECT * FROM public.perfiles ''')
+        perfiles_select = db.execute(perfilesParaSelect_query,{}).fetchall()
+
+        return render_template("gestionUsuario.html",Perfiles = perfiles_select)
+    
+    if request.method == "POST":
+        #AGREGAR USUARIO
+        usuario = request.form.get("usuario")
+        clave = request.form.get("clave")
+        hash_clave = generate_password_hash(clave)
+        perfil_seleccionado = request.form.get("idperfilselect")
+
+        #validar si ya existe el usuario
+        validar_usuario = text('SELECT * FROM public."usuarios" WHERE "usuario"=:usuario AND clave = :hashclave')
+
+        if db.execute(validar_usuario, {'usuario': usuario, 'hashclave': hash_clave}).rowcount > 0:
+            duplicado = "Usuario ya existe"
+            return render_template('gestionUsuario', duplicado)
+        else:
+            agregar_usuario = text('''INSERT INTO public.usuarios ("nombreusuario", "clave", "perfilid") VALUES (:nombre usuario, :clave, :perfilid) ''')
+            db.execute(agregar_usuario,{"nombreusuario": usuario, "clave": hash_clave, "perfilid": perfil_seleccionado})
+            db.commit()
+        print("este es el id del perfil", perfil_seleccionado)
+        return redirect("/gestionusuarios")
+    
+    return render_template("gestionUsuario.html")

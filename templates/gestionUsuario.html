@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block heading %} Gestion de usuarios {% endblock %}
+
+{% block main %}
+<section class="section-usuarios">
+    <div class="titulo-usuarios">
+        <h1>Gestion de usuarios</h1>
+    </div>
+
+    <div class="separacion-container">
+        <div class="table-container">
+            <table class="tabla_usuarios">
+                <thead>
+                    <th></th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="form_container">
+           <form action="/gestionusuarios" class="form-usuario">
+            <div class="inputs-container">
+                <label for="">Usuario</label>
+                <input type="text" name="usuario" class="input1">
+            </div>
+            <div class="inputs-container">
+                <label for="">Clave</label>
+                <input type="password" name="clave" class="input1">
+            </div>
+            <div class="inputs-container">
+                <label for="">perfil</label>
+                <select class="select" name="perfiles">
+                    {% for perfil in Perfiles %}
+                    <option name="idperfilselect" value="{{perfil[0]}}">{{perfil[1]}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="btn_form">
+                <button class="btn-agregar" type="submit">Agregar</button>
+            </div>
+           </form> 
+        </div>
+    </div>
+</section>
+{% endblock %}
