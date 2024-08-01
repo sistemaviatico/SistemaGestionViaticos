@@ -1,5 +1,5 @@
 import os
-from flask import Flask, session, render_template, redirect, render_template, request
+from flask import Flask, session, render_template, redirect, render_template, request, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -174,3 +174,31 @@ def gestionUsuarios():
         return redirect("/gestionusuarios")
     
     return render_template("gestionUsuario.html")
+
+@app.route('/obtener_info/<int:id>', methods=['GET'])
+def obtener_info(id):
+    #obtener el perfil del usuario
+    obtener_perfil = text("SELECT * FROM public.perfiles WHERE perfilid = :id")
+    result = db.execute(obtener_perfil, {"id": id})
+    info = result.fetchone()
+
+    if info:
+        # Obtener los nombres de las columnas
+        columns = result.keys()
+        # Construir el diccionario manualmente
+        info_dict = dict(zip(columns, info))
+        return jsonify(info_dict)
+    else:
+        return jsonify({'error': 'Item not found'}), 404
+    
+@app.route('/editar_perfil', methods=['POST'])
+def editar_perfil():
+
+    id_perfil = request.form.get('id_perfil')
+    nuevo_perfil = request.form.get('nuevo_nombrePerfil')
+
+    actualizarPerfil_Query = text('''UPDATE public."perfiles" SET "perfil" = :nuevoPerfil WHERE "perfilid" = :id_perfil''')
+    db.execute(actualizarPerfil_Query,{"nuevoPerfil": nuevo_perfil, "id_perfil":id_perfil})
+    db.commit()
+
+    return redirect("/gestionperfiles")
