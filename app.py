@@ -160,14 +160,15 @@ def gestionUsuarios():
         hash_clave = generate_password_hash(clave)
         perfil_seleccionado = request.form.get("idperfilselect")
 
+        print("ESTE ES EL USUARIO INGRESADO:", usuario, "y tambien su perfilid", perfil_seleccionado)
         #validar si ya existe el usuario
-        validar_usuario = text('SELECT * FROM public."usuarios" WHERE "usuario"=:usuario AND clave = :hashclave')
+        validar_usuario = text('SELECT * FROM public."usuarios" WHERE "nombreusuario"=:usuario AND clave = :hashclave')
 
         if db.execute(validar_usuario, {'usuario': usuario, 'hashclave': hash_clave}).rowcount > 0:
             duplicado = "Usuario ya existe"
             return render_template('gestionUsuario', duplicado)
         else:
-            agregar_usuario = text('''INSERT INTO public.usuarios ("nombreusuario", "clave", "perfilid") VALUES (:nombre usuario, :clave, :perfilid) ''')
+            agregar_usuario = text('''INSERT INTO public.usuarios ("nombreusuario", "clave", "perfilid") VALUES (:nombreusuario, :clave, :perfilid) ''')
             db.execute(agregar_usuario,{"nombreusuario": usuario, "clave": hash_clave, "perfilid": perfil_seleccionado})
             db.commit()
         print("este es el id del perfil", perfil_seleccionado)
