@@ -205,6 +205,16 @@ def editar_perfil():
 
     return redirect("/gestionperfiles")
 
+@app.route('/eliminar_perfil', methods=['POST'])
+def eliminar_perfil():
+
+    id_perfil = request.form.get('id_perfil')
+    eliminarPerfil_Query = text('''DELETE FROM public.perfiles WHERE "perfilid" = :id_perfil''')
+    db.execute(eliminarPerfil_Query,{"id_perfil":id_perfil})
+    db.commit()
+
+    return redirect("/gestionperfiles")
+
 #Gestion Personal
 @app.route('/gestionpersonal', methods=['GET','POST'])
 def gestion_personal():
