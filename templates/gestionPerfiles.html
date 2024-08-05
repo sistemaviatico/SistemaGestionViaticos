@@ -42,7 +42,7 @@
                             <td>{{ perfil[0] }}</td>
                             <td>{{ perfil[1] }}</td>
                             <td>
-                                <button onclick="abrirModalPerfil()">Editar</button>
+                                <button onclick="abrirModalPerfil()" name="btnConperfilID" value="{{ perfil[0] }}" class="perfil_info_btn">Editar</button>
                             </td>
                             <td>
                                 <button>Eliminar</button>
@@ -59,11 +59,11 @@
                 <div id="myModalPerfil" class="modal">
                     <div>
                         <h1 class="title-modal">Editar perfil</h1>
-                        <form action="#" method="post" class="box">
+                        <form action="/editar_perfil" method="post" class="box">
                            
                             <label>Nombre Perfil</label>
-                            
-                            <input type="text" name="nuevo_nombrePerfil" id="nuevo_perfil" value="" class="input" />
+                            <input type="hidden" id="id_perfil" name="id_perfil">
+                            <input type="text" name="nuevo_nombrePerfil" id="nuevo_perfil" />
                             
                             <div class="btn-cont">
                                 <button class="btn-ind" type="submit">Actualizar</button>

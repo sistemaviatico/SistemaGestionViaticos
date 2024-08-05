@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block heading %} Gestion de personal {% endblock %}
+
+{% block main %}
+<section class="section-personal">
+    <div class="titulo-personal">
+        <h1>Gestion de personal</h1>
+    </div>
+    <div class="busqueda_container">
+        <div class="busqueda">
+            <div class="busqueda_por_numero">
+                <label for="busqueda_por_numero">Numero empleado:</label>
+                <input class="" >
+            </div>
+            <div class="busqueda_por_nombre">
+                <label for="">Nombres</label>
+                <select class="nombresEmpleado" name="nombresEmpleado" id="">
+                    {%for nombreEmpleado in nombresynumero%}
+                    <option class="optionempleado" value="">{{nombreEmpleado[1]}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

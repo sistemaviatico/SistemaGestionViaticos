@@ -1,5 +1,5 @@
 import os
-from flask import Flask, session, render_template, redirect, render_template, request
+from flask import Flask, session, render_template, redirect, render_template, request, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -67,8 +67,6 @@ def gestionarPerfiles():
 
         perfiles_query = text('''SELECT * FROM public.perfiles''')
         perfiles_info = db.execute(perfiles_query, {}).fetchall()
-
-       
         return render_template("gestionPerfiles.html",perfiles=perfiles_info)
         
         
@@ -151,7 +149,10 @@ def gestionUsuarios():
         perfilesParaSelect_query = text('''SELECT * FROM public.perfiles ''')
         perfiles_select = db.execute(perfilesParaSelect_query,{}).fetchall()
 
-        return render_template("gestionUsuario.html",Perfiles = perfiles_select)
+        #Mostrar usuario en la tabla 
+        usuarios_query = text('''SELECT * FROM public.usuarios INNER JOIN public.perfiles ON public.usuarios."perfilid" = public.perfiles."perfilid"  ''')
+        usuarios_table = db.execute(usuarios_query, {}).fetchall()
+        return render_template("gestionUsuario.html",Perfiles = perfiles_select, usuarios = usuarios_table )
     
     if request.method == "POST":
         #AGREGAR USUARIO
@@ -162,9 +163,9 @@ def gestionUsuarios():
 
         print("ESTE ES EL USUARIO INGRESADO:", usuario, "y tambien su perfilid", perfil_seleccionado)
         #validar si ya existe el usuario
-        validar_usuario = text('SELECT * FROM public."usuarios" WHERE "nombreusuario"=:usuario AND clave = :hashclave')
+        validar_usuario = text('SELECT * FROM public."usuarios" WHERE "nombreusuario"=:usuario')
 
-        if db.execute(validar_usuario, {'usuario': usuario, 'hashclave': hash_clave}).rowcount > 0:
+        if db.execute(validar_usuario, {'usuario': usuario}).rowcount > 0:
             duplicado = "Usuario ya existe"
             return render_template('gestionUsuario', duplicado)
         else:
@@ -175,3 +176,43 @@ def gestionUsuarios():
         return redirect("/gestionusuarios")
     
     return render_template("gestionUsuario.html")
+
+@app.route('/obtener_info/<int:id>', methods=['GET'])
+def obtener_info(id):
+    #obtener el perfil del usuario
+    obtener_perfil = text("SELECT * FROM public.perfiles WHERE perfilid = :id")
+    result = db.execute(obtener_perfil, {"id": id})
+    info = result.fetchone()
+
+    if info:
+        # Obtener los nombres de las columnas
+        columns = result.keys()
+        # Construir el diccionario manualmente
+        info_dict = dict(zip(columns, info))
+        return jsonify(info_dict)
+    else:
+        return jsonify({'error': 'Item not found'}), 404
+    
+@app.route('/editar_perfil', methods=['POST'])
+def editar_perfil():
+
+    id_perfil = request.form.get('id_perfil')
+    nuevo_perfil = request.form.get('nuevo_nombrePerfil')
+
+    actualizarPerfil_Query = text('''UPDATE public."perfiles" SET "perfil" = :nuevoPerfil WHERE "perfilid" = :id_perfil''')
+    db.execute(actualizarPerfil_Query,{"nuevoPerfil": nuevo_perfil, "id_perfil":id_perfil})
+    db.commit()
+
+    return redirect("/gestionperfiles")
+
+#Gestion Personal
+@app.route('/gestionpersonal', methods=['GET','POST'])
+def gestion_personal():
+    if request.method == "GET":
+        #Nombres en el select de busqueda
+        nombres = text('SELECT "numeroempleado","nombresapellidos" FROM public.datos_trabajadores')
+        nombres_result = db.execute(nombres).fetchall()
+        return render_template("gestionPersonal.html", nombresynumero = nombres_result)
+    else:
+        if request.method == "POST":
+            return redirect("/gestionpersonal")

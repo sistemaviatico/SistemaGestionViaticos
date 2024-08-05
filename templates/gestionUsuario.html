@@ -9,18 +9,30 @@
 
     <div class="separacion-container">
         <div class="table-container">
-            <table class="tabla_usuarios">
+            <table class="tabla_usuarios table table-striped table-bordered table-hover">
                 <thead>
-                    <th></th>
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th>Clave</th>
+                        <th>Perfil</th>
+                    </tr>
                 </thead>
                 <tbody>
+                    {% for usuario in usuarios%}
+                    <tr>
+                        <td>{{usuario[1]}}</td>
+                        <td><button>Cambiar clave</button></td>
+                        <td>{{usuario[5]}}</td>
+                        {%endfor%}
+                    </tr>
                     
                 </tbody>
             </table>
         </div>
         <div class="form_container">
-           <form action="/gestionusuarios" class="form-usuario">
+           <form action="/gestionusuarios" method="post" class="form-usuario">
             <div class="inputs-container">
+                <label>{{duplicado}}</label>
                 <label for="">Usuario</label>
                 <input type="text" name="usuario" class="input1">
             </div>
@@ -30,9 +42,10 @@
             </div>
             <div class="inputs-container">
                 <label for="">perfil</label>
-                <select class="select" name="perfiles">
+                <select class="select" name="idperfilselect">
                     {% for perfil in Perfiles %}
-                    <option name="idperfilselect" value="{{perfil[0]}}">{{perfil[1]}}</option>
+                    <option name="idperfilselect" value="{{perfil.perfilid}}">{{perfil[1]}}</option>
+                    
                     {% endfor %}
 
                 </select>

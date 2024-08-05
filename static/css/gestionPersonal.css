@@ -1,0 +1,73 @@
+.section-personal{
+    width:100%;
+    height:100%;
+    background-color: #f3f3f3;
+}
+.section-personal .titulo-personal{
+    width: 100%;
+    height: 65px;
+    background-color: #b4b3b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-personal .busqueda_container{
+    width: 100%;
+    height: 30%;
+    border: 1px solid black;
+    padding: 25px 60px;
+
+}
+
+.busqueda_container .busqueda{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    gap: 85px;
+}
+.busqueda .busqueda_por_numero{
+    width: 35%;
+    height: 50%;
+    margin-right: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+.busqueda .busqueda_por_numero .inputNumero{
+    
+    height: 35px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+/*----- busqueda por nombre----*/
+.busqueda .busqueda_por_nombre{
+    border: 1px solid black;
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0px 50px 20px 50px ;
+}
+.busqueda .busqueda_por_nombre .nombresEmpleado{
+    height:45px;
+    border-style: dashed;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 25px;  
+}
+.busqueda .busqueda_por_nombre .nombresEmpleado .optionempleado{
+    font-size: 17px;
+ 
+}
