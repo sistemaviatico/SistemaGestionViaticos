@@ -20,6 +20,30 @@ $(document).ready(function(){
 
 });
 
+/*gestionPersonal*/
+function buscarNumeroEmpleado() {
+    var select = document.getElementById("nombresEmpleadoSelect");
+    var empleadoId = select.value;
+
+    fetch(`/get_numero_empleado/${empleadoId}`)
+        .then(response => response.json())
+        .then(data => {
+            // document.getElementById("mostrarNumeroEmpleado").value = data.numeroEmpleado;
+            document.getElementById("MostrarNumeroEmpleado").value = data.numeroEmpleado;
+            document.getElementById("mostrarNombresEmpleado").value = data.nombresEmpleado;
+            document.getElementById("mostrarDepatamento").value = data.departamento;
+            document.getElementById("mostrarArea").value = data.area;
+            document.getElementById("mostrarCecc").value = data.cecc;
+            document.getElementById("mostrarCedula").value = data.cedula;
+
+        })
+        .catch(error => console.error('Error:', error));
+} 
+
+
+
+
+
 
 /*Abrir modal de perfiles*/
 function abrirModalPerfil(){

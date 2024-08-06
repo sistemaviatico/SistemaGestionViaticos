@@ -25,14 +25,16 @@
     height: 130px;
     /* background-color: #ffb0b0; */
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    padding-left: 260px;
 }
 .form-perfil-conteiner .form-perfil{
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 85px;
+    justify-content: center;
+    align-items: center;
 }
 /*Input*/
 .form-perfil-conteiner .form-perfil .input-conteiner{
@@ -55,6 +57,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 25px;
     padding-top: 30px;
 }
@@ -89,7 +92,7 @@
  /*TABLA PERFILES*/
  .tablaPerfiles-Cont{
     width: 100%;
-    height: 60%;
+    height: 40%;
     padding: 0px 250px;
     /* border: 1px solid #000; */
  }

@@ -220,9 +220,32 @@ def eliminar_perfil():
 def gestion_personal():
     if request.method == "GET":
         #Nombres en el select de busqueda
-        nombres = text('SELECT "numeroempleado","nombresapellidos" FROM public.datos_trabajadores')
+        nombres = text('SELECT * FROM public.datos_trabajadores')
         nombres_result = db.execute(nombres).fetchall()
-        return render_template("gestionPersonal.html", nombresynumero = nombres_result)
+
+        #Obtener los id del usuario
+        id_trabajador = request.form.get('empleadoUserid')
+        print("idEmploy",id_trabajador)
+        #Obtener lo datos del usuario
+        obtener_trabajador = text('''SELECT * FROM public.datos_trabajadores WHERE "usuarioid" = :usuarioid''')
+        resultado=db.execute(obtener_trabajador,{"usuarioid": id_trabajador}).fetchall()
+        
+        return render_template("gestionPersonal.html", nombresynumero = nombres_result, dataEmpleado = resultado)
+
+#obtener data de los empleados
+@app.route('/get_numero_empleado/<int:empleado_id>', methods=['GET'])
+def get_numero_empleado(empleado_id):
+    obtener_trabajador = text('''SELECT * FROM public.datos_trabajadores WHERE "usuarioid" = :usuarioid''')
+    resultado = db.execute(obtener_trabajador, {"usuarioid": empleado_id}).fetchone()
+
+    if resultado:
+        numero_empleado = resultado[0]  # Ajusta esto según la posición de 'numero_empleado' en tu resultado
+        nombres_empleado = resultado[2]
+        departamento = resultado[3]
+        area = resultado[4]
+        cecc = resultado[5]
+        cedula = resultado[6]
+        return jsonify({"numeroEmpleado": numero_empleado, "nombresEmpleado":nombres_empleado,"departamento": departamento,"area":area,"cecc":cecc,"cedula":cedula})
     else:
-        if request.method == "POST":
-            return redirect("/gestionpersonal")
+        return jsonify({"numeroEmpleado": ""}), 404
+    return render_template("#")

@@ -9,18 +9,54 @@
     <div class="busqueda_container">
         <div class="busqueda">
             <div class="busqueda_por_numero">
-                <label for="busqueda_por_numero">Numero empleado:</label>
-                <input class="" >
+                <!-- <label for="busqueda_por_numero">Numero empleado:</label>
+                <input id="mostrarNumeroEmpleado" class="" value="" readonly> -->
+                <img src="/static/img/image004.png" alt="">
             </div>
             <div class="busqueda_por_nombre">
-                <label for="">Nombres</label>
-                <select class="nombresEmpleado" name="nombresEmpleado" id="">
-                    {%for nombreEmpleado in nombresynumero%}
-                    <option class="optionempleado" value="">{{nombreEmpleado[1]}}</option>
-                    {%endfor%}
-                </select>
+                    <label for="">Nombres</label>
+                    <select class="nombresEmpleado" name="empleadoUserid" id="nombresEmpleadoSelect" onchange="buscarNumeroEmpleado()">
+                        <option value="">Seleccione un nombre</option>
+                        {%for nombreEmpleado in nombresynumero%}
+                        <option class="optionempleado" value="{{nombreEmpleado[1]}}">{{nombreEmpleado[2]}}</option>
+                        {%endfor%}
+                    </select>
+            </div>
+
+        </div>
+    </div>
+    <div class="informacion_empleados">
+        <div class="contenedor-inputs">
+            <div class="info-inputs">
+                <div class="in-inputs">
+                    <label for="">Numero del empleado</label>
+                    <input readonly id="MostrarNumeroEmpleado">
+                </div>
+                <div class="in-inputs">
+                    <label  for="">Nombre completo</label>
+                    <input readonly id="mostrarNombresEmpleado">
+                </div>
+                <div class="in-inputs">
+                    <label for="">Departamento</label>
+                    <input readonly id="mostrarDepatamento">
+                </div>
+            </div>
+            <div class="info-inputs">
+                <div class="in-inputs">
+                    <label for="">Area</label>
+                    <input readonly id="mostrarArea">
+                </div>
+                <div class="in-inputs">
+                    <label for="">CECCO</label>
+                    <input readonly id="mostrarCecc">
+                </div>
+                <div class="in-inputs">
+                    <label for="">Numero Cédula</label>
+                    <input readonly id="mostrarCedula">
+                </div>
             </div>
         </div>
     </div>
+    
 </section>
 {% endblock %}

@@ -1,7 +1,13 @@
 .section-personal{
     width:100%;
     height:100%;
+    display: flex;
+    flex-direction: column;
     background-color: #f3f3f3;
+}
+.section-personal label{
+    font-size: 18px;
+    font-weight: 450;
 }
 .section-personal .titulo-personal{
     width: 100%;
@@ -14,7 +20,7 @@
 .section-personal .busqueda_container{
     width: 100%;
     height: 30%;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 25px 60px;
 
 }
@@ -22,7 +28,7 @@
 .busqueda_container .busqueda{
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: start;
     align-items: center;
@@ -32,11 +38,17 @@
 .busqueda .busqueda_por_numero{
     width: 35%;
     height: 50%;
-    margin-right: 85px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
+}
+.busqueda .busqueda_por_numero input{
+    width: 35%;
+    height: 45px;
+    font-weight: bold;
+    font-size: 20px;
+    
 }
 .busqueda .busqueda_por_numero .inputNumero{
     
@@ -49,15 +61,16 @@
 }
 
 /*----- busqueda por nombre----*/
+
 .busqueda .busqueda_por_nombre{
-    border: 1px solid black;
-    width: 65%;
+    /* border: 1px solid black; */
+    width: 55%;
     height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 25px;
-    padding: 0px 50px 20px 50px ;
+    padding: 0px 10px 20px 10px;
 }
 .busqueda .busqueda_por_nombre .nombresEmpleado{
     height:45px;
@@ -69,5 +82,46 @@
 }
 .busqueda .busqueda_por_nombre .nombresEmpleado .optionempleado{
     font-size: 17px;
- 
+}
+
+/*informacion de los empleados*/
+.informacion_empleados{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+}
+.contenedor-inputs{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px; 
+}
+.contenedor-inputs .info-inputs{
+   /* border: 1px solid black;   */
+   display: flex;
+   justify-content:space-around;
+   flex-direction: column;
+   padding: 20px 50px;
+
+}
+
+.contenedor-inputs .in-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contenedor-inputs .in-inputs input{
+    width: 100%;
+    height: 45px;
+    padding-left: 25px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 0.5px solid #000;
 }
