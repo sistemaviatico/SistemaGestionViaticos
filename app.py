@@ -6,6 +6,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import check_password_hash, generate_password_hash
 from dotenv import load_dotenv
 from functools import wraps
+from datetime import datetime
+import random
 
 load_dotenv()
 
@@ -107,6 +109,16 @@ def gestionarPerfiles():
 
 @app.route("/registrarviatico", methods=["GET", "POST"])
 def registrarViatico():
+    fecha_actual = datetime.now().strftime("%d - %m - %y")
+    if request.method == "GET":
+        cuentas_query = text('''SELECT * FROM public.tipos_viaticos''')
+        cuentas_info = db.execute(cuentas_query, {}).fetchall()
+        
+        #Nombres en el select de busqueda
+        nombres = text('SELECT * FROM public.datos_trabajadores')
+        nombres_result = db.execute(nombres).fetchall()
+
+        return render_template("registrarViatico.html", fechaActual = fecha_actual, tiposviaticos = cuentas_info , nombreTrabajador = nombres_result )
     return render_template("registrarViatico.html")
 
 
@@ -123,7 +135,7 @@ def gestionCuentas():
         return render_template("gestionCuentas.html",cuentas=cuentas_info)
     if request.method == 'POST':
             #AGREGAR cunetas
-            tipo_cuenta = request.form.get("tipo-cuenta")
+            tipo_cuenta = request.form.get("tipo-cuenta").upper()
             numero_cuenta = request.form.get("cuenta")
             print(tipo_cuenta)
 
@@ -248,4 +260,4 @@ def get_numero_empleado(empleado_id):
         return jsonify({"numeroEmpleado": numero_empleado, "nombresEmpleado":nombres_empleado,"departamento": departamento,"area":area,"cecc":cecc,"cedula":cedula})
     else:
         return jsonify({"numeroEmpleado": ""}), 404
-    return render_template("#")
+    

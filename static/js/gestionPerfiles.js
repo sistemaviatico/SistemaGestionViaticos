@@ -42,8 +42,86 @@ function buscarNumeroEmpleado() {
 
 
 
+/*Viaticos*/
+/*Registrar viaticos CHECKBOXS*/
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Aquí va tu código JavaScript
+        const checkbox_Desayuno = document.getElementById('checkboxMontoDesayuno');
+        const input_Desayuno = document.getElementById('mostrarMontoDesayuno');
 
+        const checkbox_Almuerzo = document.getElementById('checkboxMontoAlmuerzo');
+        const input_Almuerzo = document.getElementById('mostrarMontoAlmuerzo');
+        
+        const checkbox_Cena = document.getElementById('checkboxMontoCena');
+        const input_Cena = document.getElementById('mostrarMontoCena');
+
+        const checkbox_Hospedaje = document.getElementById('checkboxMontoHospedaje');
+        const input_Hospedaje = document.getElementById('mostrarMontoHospedaje');
+
+        const checkbox_Leon = document.getElementById('checkboxMontoLeon');
+        const input_Leon = document.getElementById('mostrarMontoLeon');
+
+        const checkbox_Managua = document.getElementById('checkboxMontoManagua');
+        const input_Managua = document.getElementById('mostrarMontoManagua');
+
+        const checkbox_Otros = document.getElementById('checkboxOtros');
+        const input_Otros = document.getElementById('mostrarMontoOtros');
+
+        
+        checkbox_Desayuno.addEventListener('change', () => {
+            if (checkbox_Desayuno.checked) {
+                input_Desayuno.value = '300.00';
+            } else {
+                input_Desayuno.value = '0.00';
+            }
+        });
+        checkbox_Almuerzo.addEventListener('change', () => {
+            if (checkbox_Almuerzo.checked) {
+                input_Almuerzo.value = '350.00';
+            } else {
+                input_Almuerzo.value = '0.00';
+            }
+        });
+        checkbox_Cena.addEventListener('change', () => {
+            if (checkbox_Cena.checked) {
+                input_Cena.value = '300.00';
+            } else {
+                input_Cena.value = '0.00';
+            }
+        });
+        checkbox_Hospedaje.addEventListener('change', () => {
+            if (checkbox_Hospedaje.checked) {
+                input_Hospedaje.value = '500.00';
+            } else {
+                input_Hospedaje.value = '0.00';
+            }
+        });
+        checkbox_Leon.addEventListener('change', () => {
+            if (checkbox_Leon.checked) {
+                input_Leon.value = '200.00';
+            } else {
+                input_Leon.value = '0.00';
+            }
+        });
+        checkbox_Managua.addEventListener('change', () => {
+            if (checkbox_Managua.checked) {
+                input_Managua.value = '350.00';
+            } else {
+                input_Managua.value = '0.00';
+            }
+        });
+        checkbox_Otros.addEventListener('change', () => {
+            if (checkbox_Otros.checked) {
+                input_Otros.value = '200.00';
+            } else {
+                input_Otros.value = '0.00';
+            }
+        });
+  
+    // ... resto del código
+    
+  });  
 
 /*Abrir modal de perfiles*/
 function abrirModalPerfil(){

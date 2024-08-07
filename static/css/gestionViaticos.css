@@ -1,0 +1,151 @@
+.section-viaticos{
+    height: 150vh;
+}
+.section-viaticos .titulo_fecha{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #B4B3B3;
+}
+.section-viaticos .imagenesTitulo{
+    width: 100%;
+    height: 175px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    background-color: #ece7e7;
+}
+.section-viaticos .imagenesTitulo .imgcalibre{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-viaticos .imagenesTitulo .imgMolino{
+    width: 100%;
+  height: 100%;
+  object-fit: cover; /* Escalar la imagen para llenar el contenedor, recortando si es necesario */
+  object-position: center; /* Posicionar la imagen, centrarla horizontalmente */
+    overflow: hidden;
+}
+/*VIATOCOS*/
+.fechas-contenedor{
+    width: 100%;
+    height: 85px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    max-width: 100%;
+}
+.fechas-contenedor .fechasViatico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 0px 10px;
+}
+.fechas-contenedor .fechasViatico label{
+    font-weight: 700;
+}
+.fechas-contenedor .fechasViatico .fechasViaticoInput{
+    height: 45px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+}
+/* Viatico Informacion*/
+.informacion-viatico{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    border: 1px solid black;
+}
+.informacion-viatico .inputs-viatico .input-viatico{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+.informacion-viatico .inputs-viatico .input-viatico .textarea{
+    height: 150px;
+    padding: 15px;
+    font-size: 18px;
+    
+}
+.informacion-viatico .inputs-viatico .input-viatico .combo-input{
+   
+    display: flex;
+    flex-direction: row;
+    gap: 35px
+}
+.informacion-viatico .inputs-viatico .input-viatico .combo-input .inputMonto{
+    width: 80%;
+    height: 45px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    padding: 0px 15px;
+}
+.informacion-viatico .inputs-viatico .input-viatico .combo-input .checkbox{
+    width: 20px;
+}
+.informacion-viatico .inputs-viatico , .tipoViatico-trabajadores{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:25px;
+    padding: 10px;
+}
+/*SELECT de ambos div*/
+.informacion-viatico .tipoViatico-trabajadores .tipoViatico, .trabajadores{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
+.trabajadores{
+    background-color: #e6e6e6;
+}
+.trabajadores label{
+    font-size: 16px;
+    font-weight: 500;
+}
+.informacion-viatico .tipoViatico-trabajadores .tipoViatico .selectTipoviatico, .trabajadores .selectNombreEmpleado{
+    width: 100%;
+    height: 45px;
+    padding: 0px 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+/*INPUTS CON LA INFO*/
+.trabajadores .group-inputs{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    margin-top: 25px;
+}
+.trabajadores .group-inputs .inputs-in{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap:15px
+}
+.trabajadores .group-inputs .inputs-in input{
+    width: 100%;
+    height: 45px;
+    padding: 0px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    
+}

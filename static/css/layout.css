@@ -20,13 +20,25 @@
   }
   .header { 
     grid-area: header;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     border: 1px solid black;
 }
-  .sidebar-section { grid-area: side;
+  .sidebar-section {
+    grid-area: side;
+    position: fixed;
+    top: 110px; /* Altura del header */
+    left: 0;
+    width: 20%;
+    z-index: 999;
+    height: calc(100% - 110px);
     /* border: 1px solid black; */
  }
   .main { grid-area: main;
      border: 1px solid black;
+     overflow-y: auto; 
    }
 
    /* SIDEBAR */
