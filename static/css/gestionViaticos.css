@@ -77,10 +77,24 @@
     
 }
 .informacion-viatico .inputs-viatico .input-viatico .combo-input{
-   
+   position: relative;
     display: flex;
     flex-direction: row;
     gap: 35px
+}
+.informacion-viatico .inputs-viatico .input-viatico .combo-input .prefix{
+    position: absolute;
+    left: 460px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.informacion-viatico .inputs-viatico .input-viatico .combo-input .prefixd{
+    position: absolute;
+    left: 490px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 .informacion-viatico .inputs-viatico .input-viatico .combo-input .inputMonto{
     width: 80%;
