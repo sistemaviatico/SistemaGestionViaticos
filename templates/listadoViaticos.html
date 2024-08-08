@@ -1,0 +1,51 @@
+{% extends "layout.html" %} {% block heading %} Listado viaticos {% endblock%} 
+{% block main %}
+<section class="section-listado">
+    <div class="contenedor-tabla">
+        <table class="table table-striped table-bordered table-hover" id="tablaCuentas">
+            <thead>
+                <tr>
+                    <th>ID viatico</th>
+                    <th>Fecha del viatico </th>
+                    <th>Fecha del elaboración </th>
+                    <th>Fecha entrega caja </th>
+                    <th>Viatico</th>
+                    <th>Desayuno</th>
+                    <th>Almuerzo</th>
+                    <th>Cena</th>
+                    <th>Hospedaje</th>
+                    <th>Transp Leon</th>
+                    <th>Transp Managua</th>
+                    <th>Otros</th>
+                    <th>Observaciones</th>
+                    <th>Empleado</th>
+                    <th>Total Cordobas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for viaticoinfo in viaticoInfo %}
+                <tr>
+                    <td>{{ viaticoinfo[0] }}</td>
+                    <td>{{ viaticoinfo[1] }}</td>
+                    <td>{{ viaticoinfo[2] }}</td>
+                    <td>{{ viaticoinfo[3] }}</td>
+                    <td>{{ viaticoinfo[15]}}</td>
+                    <td>{{ viaticoinfo[5]}}</td>
+                    <td>{{ viaticoinfo[6]}}</td>
+                    <td>{{ viaticoinfo[7]}}</td>
+                    <td>{{ viaticoinfo[10]}}</td>
+                    <td>{{ viaticoinfo[8]}}</td>
+                    <td>{{ viaticoinfo[9]}}</td>
+                    <td>{{ viaticoinfo[11]}}</td>
+                    <td>{{ viaticoinfo[12]}}</td>
+                    <td>{{ viaticoinfo[16]}}</td>
+                    <td>{{ viaticoinfo[13]}}</td>
+
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock%}

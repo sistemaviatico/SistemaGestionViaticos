@@ -154,18 +154,7 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkbox.addEventListener('change', handleCheckboxChange);
     });
     
-    // imprimir
-    printButton.addEventListener('click', function() {
-        const printContents = document.querySelector('.informacion-viatico').innerHTML;
-        const originalContents = document.body.innerHTML;
-
-        document.body.innerHTML = `<div>${printContents}</div>`;
-
-        window.print();
-
-        document.body.innerHTML = originalContents;
-        window.location.block(); // Recargar la página para restaurar los eventos de los botones
-    });
+    
    });  
 
 /*Abrir modal de perfiles*/

@@ -7,6 +7,9 @@
         <h1>Gestion de perfiles de usuario</h1>
     </div>
     <div class="form-perfil-conteiner">
+        <div class="img_cal">
+            <img src="/static/img/image004.png" alt="">
+        </div>
         <form class="form-perfil" action="/gestionperfiles" method="post">
             <div class="input-conteiner">
                 <label for="">Nombre del perfil</label>
@@ -21,21 +24,20 @@
     </div>
     {% if request.method == 'GET' or reque.method == 'POST' %}
     <div class="tablaPerfiles-Cont">
-        <div class="table-title">
-            <h3>Listado de perfiles de usuario</h3>
-        </div>
+        
         <div class="tablaperfiles">
             <table class="table" id="tablaPerfiles">
                 <thead>
                     <tr>
                         <th>ID Perfil</th>
                         <th>Nombre Perfil</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                     <tbody>
                         {% for perfil in perfiles %}
                         <tr>
-                            <!-- <input type="hidden" name="id_perfil" id="#" value="{{ perfil[0] }}"> -->
                             <td>{{ perfil[0] }}</td>
                             <td>{{ perfil[1] }}</td>
                             <td>

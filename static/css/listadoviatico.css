@@ -1,0 +1,10 @@
+.section-listado{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+.section-listado .contenedor-tabla{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}

@@ -10,144 +10,154 @@
         </div>
         <img src="/static/img/calibre_triton_0320_171.webp" alt="" class="imgMolino" />
     </div>
+
     <div class="fechas-contenedor">
         <div class="fechasViatico">
             <label for="">Fecha del viatico:</label>
-            <input type="text" disabled class="fechasViaticoInput" value="{{fechaActual}}" />
+            <input type="text" readonly name="fechaViatico" class="fechasViaticoInput" value="{{fechaActual}}" />
         </div>
         <div class="fechasViatico">
             <label for="">Fecha de elaboración:</label>
-            <input type="text" disabled class="fechasViaticoInput" value="{{fechaActual}}" />
+            <input type="text" readonly name="fechaElaboracion" class="fechasViaticoInput" value="{{fechaActual}}" />
         </div>
         <div class="fechasViatico">
             <label for="">Fecha de entrega a caja:</label>
-            <input type="text" disabled class="fechasViaticoInput" value="{{fechaActual}}" />
+            <input type="text" readonly name="fechaEntrega" class="fechasViaticoInput" value="{{fechaActual}}" />
         </div>
     </div>
-    <div class="informacion-viatico">
-        <div class="inputs-viatico">
-            <div class="input-viatico">
-                <label for="">Monto Desayuno</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input readonly id="mostrarMontoDesayuno" value="0.00" class="inputMonto">
-                    <input type="checkbox" class=checkbox id="checkboxMontoDesayuno"  data-monto="150.00">
+    <form action="/registrarviatico" method="post">
+        <div class="informacion-viatico">
+            <div class="inputs-viatico">
+                <div class="input-viatico">
+                    <label for="">Monto Desayuno</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input readonly id="mostrarMontoDesayuno" name="montoDesayuno" value="0.00" class="inputMonto">
+                        <input type="checkbox" class=checkbox id="checkboxMontoDesayuno" data-monto="150.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Monto Almuerzo</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoAlmuerzo" name="montoAlmuerzo" value="0.00">
+                        <input type="checkbox" class=checkbox id="checkboxMontoAlmuerzo" data-monto="350.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Monto Cena</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoCena" name="montoCena" value="0.00">
+                        <input type="checkbox" class=checkbox id="checkboxMontoCena" data-monto="300.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Monto Hospedaje</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoHospedaje" name="montoHospedaje"
+                            value="0.00">
+                        <input type="checkbox" class=checkbox id="checkboxMontoHospedaje" data-monto="500.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Transporte León</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoLeon" name="montoLeon" value="0.00">
+                        <input type="checkbox" class=checkbox id="checkboxMontoLeon" data-monto="350.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Transporte Managua</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoManagua" name="montoTransporteManagua"
+                            value="0.00">
+                        <input type="checkbox" class=checkbox id="checkboxMontoManagua" data-monto="400.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Otros</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoOtros" name="montoOtros" value="0.00">
+                        <input type="checkbox" class=checkbox id="checkboxOtros" data-monto="300.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Observaciones</label>
+                    <textarea type="text" id="observaciones" class="textarea" name="Observaciones"></textarea>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Total córdobas</label>
+                    <div class="combo-input">
+                        <span class="prefix">C$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoCordobas" name="montoCordobas" value="0.00">
+                    </div>
+                </div>
+                <div class="input-viatico">
+                    <label for="">Total dólares</label>
+                    <div class="combo-input">
+                        <span class="prefixd">$</span>
+                        <input class="inputMonto" readonly id="mostrarMontoDolares" name="montoDolares" value="0.00">
+                    </div>
                 </div>
             </div>
-            <div class="input-viatico">
-                <label for="">Monto Almuerzo</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoAlmuerzo" value="0.00">
-                    <input type="checkbox" class=checkbox id="checkboxMontoAlmuerzo"  data-monto="350.00">
+            <div class="tipoViatico-trabajadores">
+                <div class="tipoViatico">
+                    <label for="">Seleccione el tipo de viatico:</label>
+                    <select class="selectTipoviatico" name="tipoViaticoid" id="tiposViaticoSelect">
+                        {%for tipoViatico in tiposviaticos%}
+                        <option class="optionviatico" value="{{tipoViatico[0]}}">{{tipoViatico[1]}}</option>
+                        {%endfor%}
+                    </select>
                 </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Monto Cena</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoCena" value="0.00">
-                    <input type="checkbox" class=checkbox id="checkboxMontoCena"  data-monto="300.00">
+                <div class="trabajadores">
+                    <label for="">Datos del trabajador a aplicar viatico</label>
+                    <select class="selectNombreEmpleado" name="empleadoid" id="nombresEmpleadoSelect"
+                        onchange="buscarNumeroEmpleado()">
+                        <option value="">Seleccione un nombre</option>
+                        {%for nombretrabajador in nombreTrabajador%}
+                        <option class="optionempleado" value="{{nombretrabajador[1]}}">{{nombretrabajador[2]}}</option>
+                        {%endfor%}
+                    </select>
+                    <div class="group-inputs">
+                        <div class="inputs-in">
+                            <label for="">Numero del empleado</label>
+                            <input readonly id="MostrarNumeroEmpleado">
+                        </div>
+                        <div class="inputs-in">
+                            <label for="">Nombre completo</label>
+                            <input readonly id="mostrarNombresEmpleado">
+                        </div>
+                        <div class="inputs-in">
+                            <label for="">Departamento</label>
+                            <input readonly id="mostrarDepatamento">
+                        </div>
+                        <div class="inputs-in">
+                            <label for="">Area</label>
+                            <input readonly id="mostrarArea">
+                        </div>
+                        <div class="inputs-in">
+                            <label for="">CECCO</label>
+                            <input readonly id="mostrarCecc">
+                        </div>
+                        <div class="inputs-in">
+                            <label for="">Numero Cédula</label>
+                            <input readonly id="mostrarCedula">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Monto Hospedaje</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoHospedaje" value="0.00">
-                    <input type="checkbox" class=checkbox id="checkboxMontoHospedaje"  data-monto="500.00">
-                </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Transporte León</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoLeon" value="0.00">
-                    <input type="checkbox" class=checkbox id="checkboxMontoLeon"  data-monto="350.00">
-                </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Transporte Managua</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoManagua" value="0.00">
-                    <input type="checkbox" class=checkbox id="checkboxMontoManagua"  data-monto="400.00">
-                </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Otros</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoOtros" value="0.00">
-                    <input type="checkbox" class=checkbox id="checkboxOtros" data-monto="300.00">
-                </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Observaciones</label>
-                <textarea type="text" id="observaciones" class="textarea"></textarea>
-            </div>            
-            <div class="input-viatico">
-                <label for="">Total córdobas</label>
-                <div class="combo-input">
-                    <span class="prefix">C$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoCordobas" value="0.00">
-                </div>
-            </div>
-            <div class="input-viatico">
-                <label for="">Total dólares</label>
-                <div class="combo-input">
-                    <span class="prefixd">$</span>
-                    <input class="inputMonto" readonly id="mostrarMontoDolares" value="0.00">
+                    <div class="area-checkbox-Boton">
+                        <div class="boton">
+                            <button class="guardar-boton" type="submit">Guardar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="tipoViatico-trabajadores">
-            <div class="tipoViatico">
-                <label for="">Seleccione el tipo de viatico:</label>
-                <select class="selectTipoviatico" name="tipoViaticoid" id="tiposViaticoSelect">
-                    {%for tipoViatico in tiposviaticos%}
-                    <option class="optionviatico" value="{{tipoViatico[0]}}">{{tipoViatico[1]}}</option>
-                    {%endfor%}
-                </select>
-            </div>
-            <div class="trabajadores">
-                <label for="">Datos del trabajador a aplicar viatico</label>
-                <select class="selectNombreEmpleado" name="empleadoUserid" id="nombresEmpleadoSelect"
-                    onchange="buscarNumeroEmpleado()">
-                    <option value="">Seleccione un nombre</option>
-                    {%for nombretrabajador in nombreTrabajador%}
-                    <option class="optionempleado" value="{{nombretrabajador[1]}}">{{nombretrabajador[2]}}</option>
-                    {%endfor%}
-                </select>
-                <div class="group-inputs">
-                    <div class="inputs-in">
-                        <label for="">Numero del empleado</label>
-                        <input readonly id="MostrarNumeroEmpleado">
-                    </div>
-                    <div class="inputs-in">
-                        <label for="">Nombre completo</label>
-                        <input readonly id="mostrarNombresEmpleado">
-                    </div>
-                    <div class="inputs-in">
-                        <label for="">Departamento</label>
-                        <input readonly id="mostrarDepatamento">
-                    </div>
-                    <div class="inputs-in">
-                        <label for="">Area</label>
-                        <input readonly id="mostrarArea">
-                    </div>
-                    <div class="inputs-in">
-                        <label for="">CECCO</label>
-                        <input readonly id="mostrarCecc">
-                    </div>
-                    <div class="inputs-in">
-                        <label for="">Numero Cédula</label>
-                        <input readonly id="mostrarCedula">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    </form>
 </section>
 {% endblock %}

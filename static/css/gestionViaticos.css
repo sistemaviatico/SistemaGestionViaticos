@@ -163,3 +163,49 @@
     border: none;
     
 }
+
+/*AreaCHECKBOX*/
+.area-checkbox-Boton{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.area-checkbox-Boton .area-checkbox{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+.area-checkbox-Boton .area-checkbox .checkbox-habilitador{
+    width: 20px;
+    height: 20px;
+}
+.area-checkbox-Boton .boton{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.area-checkbox-Boton .boton .guardar-boton{
+    background-color: #01aa25;
+    width: 250px;
+    height: 55px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+}
+.area-checkbox-Boton .boton .guardar-boton:hover{
+    background-color: #0a8b26;
+}

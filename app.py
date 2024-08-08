@@ -109,7 +109,8 @@ def gestionarPerfiles():
 
 @app.route("/registrarviatico", methods=["GET", "POST"])
 def registrarViatico():
-    fecha_actual = datetime.now().strftime("%d - %m - %y")
+     
+    fecha_actual = datetime.now().strftime("%d-%m-%y")
     if request.method == "GET":
         cuentas_query = text('''SELECT * FROM public.tipos_viaticos''')
         cuentas_info = db.execute(cuentas_query, {}).fetchall()
@@ -119,7 +120,51 @@ def registrarViatico():
         nombres_result = db.execute(nombres).fetchall()
 
         return render_template("registrarViatico.html", fechaActual = fecha_actual, tiposviaticos = cuentas_info , nombreTrabajador = nombres_result )
+    else:
+        monto_desayuno=float(request.form.get('montoDesayuno', 0.00)),
+        monto_almuerzo=float(request.form.get('montoAlmuerzo', 0.00)),
+        monto_cena=float(request.form.get('montoCena', 0.00)),
+        monto_hospedaje=float(request.form.get('montoHospedaje', 0.00)),
+        monto_leon=float(request.form.get('montoLeon', 0.00)),
+        monto_managua=float(request.form.get('montoTransporteManagua', 0.00)),
+        monto_otros=float(request.form.get('montoOtros', 0.00)),
+        observaciones=request.form.get('Observaciones'),
+        total_cordobas=float(request.form.get('montoCordobas', 0.00)),
+        total_dolares=float(request.form.get('montoDolares', 0.00)),
+        tipo_viatico_id=request.form.get('tipoViaticoid'),
+        empleado_user_id=request.form.get('empleadoid'),
+        numero_empleado=request.form.get('numeroEmpleado'),
+        nombre_completo=request.form.get('nombreCompleto'),
+        departamento=request.form.get('departamento'),
+        area=request.form.get('area'),
+        cecco=request.form.get('cecco'),
+        numero_cedula=request.form.get('numeroCedula')
+
+         # Verifica si la combinación ya existe en la base de datos
+        # check_query = text('''SELECT COUNT(*) FROM public."registro_viaticos" as r INNER JOIN public."datos_trabajadores" as p
+        #                    ON r."usuarioID" = p."usuarioID"
+        #             WHERE "tipo_viatico_id" = :tipo_viatico_id ''')
+        # result = db.execute(check_query, {"tipo_viatico_id": tipo_viatico_id})
+        # count = result.scalar()
+        #Insert
+        insertar_viatico_query = text('''INSERT INTO public."registro_viaticos" ("fechadelviatico", "fechadeelaboracion","entregaencaja","tipoviaticoid"
+                                      , "desayuno", "almuerzo", "cena", "transporteleon", "transportemanagua", hospedaje, "otros","observaciones","totalcordobas","numeroempleado" )
+                                      VALUES ( :fechadelviatico,:fechadeelaboracion, :entregaencaja, :tipoviaticoid, :desayuno, :almuerzo, :cena, :trasnporteleon, :transportemanagua,
+                                      :hospedaje, :otros, :observaciones, :totalcordobas, :numeroempleado) ''')
+        
+        db.execute(insertar_viatico_query,{"fechadelviatico": fecha_actual, "fechadeelaboracion": fecha_actual, "entregaencaja": fecha_actual, "tipoviaticoid":tipo_viatico_id, "desayuno":monto_desayuno,"almuerzo":monto_almuerzo,"cena":monto_cena,"trasnporteleon":monto_leon, "transportemanagua":monto_managua,"hospedaje":monto_hospedaje,"otros":monto_otros,"observaciones":observaciones,"totalcordobas":total_cordobas,"numeroempleado":empleado_user_id})
+        db.commit()
+        return redirect("/registrarviatico")
     return render_template("registrarViatico.html")
+
+@app.route("/listadoviatico")
+def listadoviatico():
+    if request.method == "GET":
+        select_viaticoInfoQuery = text(''' SELECT r.* , v."tipoviatico", u."nombresapellidos" FROM public."registro_viaticos" as r
+                                       INNER JOIN public."tipos_viaticos" as v ON r."tipoviaticoid" = v."tipoviaticoid" 
+                                       INNER JOIN public."datos_trabajadores" as u ON r."numeroempleado" = u."usuarioid" ''')
+        viatico_info = db.execute(select_viaticoInfoQuery).fetchall()
+    return render_template("listadoViaticos.html", viaticoInfo = viatico_info)
 
 
 @app.route("/gestioncuentas", methods = ["GET", "POST"])
@@ -260,4 +305,3 @@ def get_numero_empleado(empleado_id):
         return jsonify({"numeroEmpleado": numero_empleado, "nombresEmpleado":nombres_empleado,"departamento": departamento,"area":area,"cecc":cecc,"cedula":cedula})
     else:
         return jsonify({"numeroEmpleado": ""}), 404
-    

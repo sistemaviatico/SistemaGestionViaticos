@@ -23,6 +23,14 @@
 .form-perfil-conteiner{
     width: 100%;
     height: 130px;
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    grid-template-rows: 1fr;
+    place-content: center;
+    justify-content: center;
+}
+.form-perfil-conteiner .img_cal{
+    width: 100%;
     /* background-color: #ffb0b0; */
     display: flex;
     justify-content: center;
@@ -104,7 +112,6 @@
     align-items: center;
  }
  .tablaPerfiles-Cont .tablaperfiles{
-    border: 1px solid #000;
     width: 100%;
     height: 85%;
     
