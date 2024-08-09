@@ -25,6 +25,16 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        
+        if session.get("usuario") is None:
+            return redirect("/")
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -49,19 +59,22 @@ def login():
                     session["usuario"] = usuario_seleccionado[1]
                     session["perfil"] = usuario_seleccionado[5]
                     print(session["perfil"])
-                    return render_template("layout.html")
+                    return render_template("inicio.html")
             else:
-                error = "Nombre de usuario o contraseña incorrecta, favor verifique sus datos" 
+                error = "Nombre de usuario o contraseña incorrecta, favor verifique sus datos*" 
                 return render_template("login.html", error=error) 
             
                 
         return render_template("login.html")     
-            
+
+
 @app.route("/inicio", methods=["GET", "POST"])
+@login_required
 def inicio():
     return render_template("inicio.html")
 
 @app.route("/gestionperfiles", methods=["GET", "POST"])
+@login_required
 def gestionarPerfiles():
     if request.method == "GET":
         #MOSTRAR PERFILES EN TABLA PERFILES
@@ -75,8 +88,10 @@ def gestionarPerfiles():
     else:
         if request.method == 'POST':
             #AGREGAR PERFILES
-            nombre_perfil = request.form.get("nombre-perfil")
+            nombre_perfil = request.form.get("nombre-perfil").upper()
             print(nombre_perfil)
+
+            
 
             consulta_existenciaPerfiles = text('''SELECT COUNT(*) FROM public."perfiles" WHERE "perfil" = :nombre_perfil''')
             resultadoPerfiles = db.execute(consulta_existenciaPerfiles,{"nombre_perfil": nombre_perfil}).scalar()
@@ -108,6 +123,7 @@ def gestionarPerfiles():
 #     return redirect("/gestionperfiles")
 
 @app.route("/registrarviatico", methods=["GET", "POST"])
+@login_required
 def registrarViatico():
      
     fecha_actual = datetime.now().strftime("%d-%m-%y")
@@ -158,6 +174,7 @@ def registrarViatico():
     return render_template("registrarViatico.html")
 
 @app.route("/listadoviatico")
+@login_required
 def listadoviatico():
     if request.method == "GET":
         select_viaticoInfoQuery = text(''' SELECT r.* , v."tipoviatico", u."nombresapellidos" FROM public."registro_viaticos" as r
@@ -168,6 +185,7 @@ def listadoviatico():
 
 
 @app.route("/gestioncuentas", methods = ["GET", "POST"])
+@login_required
 def gestionCuentas():
     if request.method == "GET":
         #MOSTRAR PERFILES EN TABLA PERFILES
@@ -200,6 +218,7 @@ def gestionCuentas():
 
 #Gestion de usuarios
 @app.route("/gestionusuarios", methods=["GET", "POST"])
+@login_required
 def gestionUsuarios():
     if request.method == "GET":
         #MOSTRAR PERFILES EN EL SELECT PERFILES
@@ -274,6 +293,7 @@ def eliminar_perfil():
 
 #Gestion Personal
 @app.route('/gestionpersonal', methods=['GET','POST'])
+@login_required
 def gestion_personal():
     if request.method == "GET":
         #Nombres en el select de busqueda
@@ -305,3 +325,9 @@ def get_numero_empleado(empleado_id):
         return jsonify({"numeroEmpleado": numero_empleado, "nombresEmpleado":nombres_empleado,"departamento": departamento,"area":area,"cecc":cecc,"cedula":cedula})
     else:
         return jsonify({"numeroEmpleado": ""}), 404
+
+
+@app.route("/cerrarsesion")
+def cerrarsesion():
+     session.clear()
+     return render_template("login.html")

@@ -6,7 +6,7 @@
 /*------------- NAV ---------------*/
 .headerIn{
     height: 120px;
-    background-color: #1470DA;
+    background-color: #e9e8e8;
     border-bottom-right-radius:35px ;
     border-bottom-left-radius:35px ;
    
@@ -20,14 +20,14 @@
     height: 100%;
 }
 .headerIn .navIn .logo{
-    width: 110px;
-    height: 110px;
+    width: 170px;
+    height: 170px;
 }
 .headerIn .navIn ul li{
     list-style: none;
 }
 .headerIn .navIn ul li h2{
-    color: #fff;
+    color: #000;
     font-size: 45px;
 }
 /*------------- FIN NAV ---------------*/
@@ -38,6 +38,9 @@
     padding-bottom: 15px;
     color: red;
     font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
 }
 .form_section{
     width: 100%;
@@ -50,7 +53,7 @@
 }
 .form_section .form_contenedor{
     width: 800px;
-    height: 450px;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -66,18 +69,23 @@
 }
 /* Parte 1 */
 .form_section .form_contenedor .form_parte1{
-    background: linear-gradient(180deg, #1470DA 0%, #034EA4 100%);
-    
+    background: linear-gradient(180deg, #ffffff 0%, #0078ff 100%);
     border-top-left-radius: 26px;
     border-bottom-left-radius: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 85px; */
+    padding: 50px;
+    text-align: center  ;
 }
 .form_section .form_contenedor .form_parte1 .form_items .parte1_img{
-    width: 180px;
-    height: 180px;
+    width: 270px;
+    height: 100px;
     margin-top: 30px;
 }
 .form_section .form_contenedor .form_parte1 .form_items .parte1_txt{
-    color: #fff;
+    color: #000;
     margin: 10px 0;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-weight: 100;
@@ -85,7 +93,7 @@
 
 .form_section .form_contenedor .form_parte1 .form_items a .parte1_btn{
     border-radius: 25px;
-    background: #0575E6;
+    background: #033f7a;
     color: #fff;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border: none;
@@ -140,6 +148,7 @@
     height: auto;
     width: 100%;
     gap: 25px;
+    padding: 15px;
 }
 .form_section .form_contenedor .form_parte2 .form_items2 .formulario .form_group{
     display: flex;

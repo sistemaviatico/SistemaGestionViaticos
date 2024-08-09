@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/inicio.css">
     <link rel="stylesheet" href="/static/css/gestionPerfiles.css">
     <link rel="stylesheet" href="/static/css/gestionViaticos.css">
     <link rel="stylesheet" href="/static/css/gestionCuenta.css">
@@ -24,7 +25,25 @@
 </head>
 <body>
     <section class="all-screen">
-        <div class="header"></div>
+        <div class="header">
+            <div class="logo">
+                <img src="/static/img/image004.png" alt="">
+            </div>
+            <div class="titulo-app">
+                <h2 class="mainTitulo">TRITON MINERA S.A.</h2>
+                <h3 class="secundTitulo">SUPERINTENDENCIA DE RRHH</h3>
+                <h4 class="tercerTitulo">Sistema de gestión de viaticos</h4>
+            </div>
+            <div class="fecha">
+                <a href="/cerrarsesion">
+                    <div class="option">
+                        <i class="fa fa-sign-out" title="Cerrarsesion"></i>
+                        <h4>Cerrar Sesión</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% if session["perfil"] == "ADMINISTRADOR" %}
         <div class="sidebar-section">
             <div class="menu">
                 <div class="name-menu">
@@ -76,6 +95,35 @@
                 </div>
             </div>
         </div>
+        {%elif session["perfil"] == "SOLO-VIATICOS" %}
+        <div class="sidebar-section">
+            <div class="menu">
+                <div class="name-menu">
+                    <h4>Menu principal</h4>
+                </div>
+                <div class="menu-item">
+                    <a href="/inicio">
+                        <div class="option">
+                            <i class="fa-solid fa-home" style="color: #f5f5f5;" title="Inicio"></i>
+                            <h4>Inicio</h4>
+                        </div>
+                    </a>
+                    <a href="/listadoviatico">
+                        <div class="option">
+                            <i class="fa-solid fa-book-open-reader" style="color: #f5f5f5;" title="Registrar viaticos"></i>
+                            <h4>Listado de viaticos</h4>
+                        </div>
+                    </a>
+                    <a href="/registrarviatico">
+                        <div class="option">
+                            <i class="fa-solid fa-book-open-reader" style="color: #f5f5f5;" title="Registrar viaticos"></i>
+                            <h4>Registrar viaticos</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+       {% endif %}
         <main class="main">
             {%block main%}{%endblock%}
         </main>

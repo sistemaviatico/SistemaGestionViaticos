@@ -41,7 +41,6 @@ function buscarNumeroEmpleado() {
 } 
 
 
-
 /*Viaticos*/
 /*Registrar viaticos CHECKBOXS*/
 

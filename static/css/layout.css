@@ -20,11 +20,63 @@
   }
   .header { 
     grid-area: header;
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
-    z-index: 1000;
-    border: 1px solid black;
+    left: 0; */
+    z-index: 10000;
+    background-color: #d3d3d3;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 0.8fr;
+    grid-template-rows: 1fr;
+}
+  .header .logo{ 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+  .header .logo img{ 
+  width: 195px;
+  height: 65px;
+}
+  .header .titulo-app{ 
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   text-align:center;
+   gap: 10px;
+}
+  .header .titulo-app .mainTitulo{ 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+   
+}
+  .header .titulo-app .secundTitulo{ 
+    font-size: 20px;
+    font-weight: 400;
+   
+}
+  .header .titulo-app .tercerTitulo{ 
+    font-size: 18px;
+    font-weight: 400;
+   
+}
+  .header .fecha , .header .fecha  a{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    text-decoration: none;
+}
+  .header .fecha .option{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+  .header .fecha .option i, .header .fecha .option h4{
+   font-size: 20px;
+   color: #06388a;
 }
   .sidebar-section {
     grid-area: side;
@@ -34,16 +86,17 @@
     width: 20%;
     z-index: 999;
     height: calc(100% - 110px);
+    padding-top: 55px;
     /* border: 1px solid black; */
  }
-  .main { grid-area: main;
-     border: 1px solid black;
+  .main { 
+     grid-area: main;
      overflow-y: auto; 
    }
 
    /* SIDEBAR */
    .sidebar-section{
-    background-color:#0164FE;
+    background-color:#06388a;
     color:#fff;
    }
    .menu{

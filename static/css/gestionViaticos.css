@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #B4B3B3;
+    background-color: #e6e5e5;
 }
 .section-viaticos .imagenesTitulo{
     width: 100%;
@@ -15,7 +15,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    background-color: #ece7e7;
+    background-color: #f1f1f1;
 }
 .section-viaticos .imagenesTitulo .imgcalibre{
     
