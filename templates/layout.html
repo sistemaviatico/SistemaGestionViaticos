@@ -18,6 +18,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/gestionPerfiles.js"></script>
 
     <title>{%block heading%}
     Inicio
@@ -41,6 +42,10 @@
                         <h4>Cerrar Sesión</h4>
                     </div>
                 </a>
+                <div class="reloj">
+                    <p id="fecha"></p>
+                    <p id="hora"></p>
+                </div>
             </div>
         </div>
         {% if session["perfil"] == "ADMINISTRADOR" %}

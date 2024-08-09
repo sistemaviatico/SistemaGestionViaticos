@@ -20,6 +20,7 @@ $(document).ready(function(){
 
 });
 
+
 /*gestionPersonal*/
 function buscarNumeroEmpleado() {
     var select = document.getElementById("nombresEmpleadoSelect");
@@ -45,6 +46,38 @@ function buscarNumeroEmpleado() {
 /*Registrar viaticos CHECKBOXS*/
 
 document.addEventListener('DOMContentLoaded', () => {
+    /* FECHA Y HORA */
+const semana = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
+
+const meses = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
+
+function actualizarTiempo(){
+    let now = new Date()
+
+    document.getElementById("hora").innerText =
+    zeroPadding(now.getHours(),2) +  ":" + 
+    zeroPadding(now.getMinutes(),2) + ":" +
+    zeroPadding(now.getSeconds(),2);
+
+    document.getElementById("fecha").innerText = 
+    semana[now.getDay()] + ", " +
+    zeroPadding(now.getDate(),2) + " de " +
+    meses[now.getMonth()] + " del " +
+    zeroPadding(now.getFullYear())
+}
+actualizarTiempo();
+setInterval(actualizarTiempo, 1000);
+
+function zeroPadding(num, digit){
+    return String(num).padStart(digit, '0');
+}
+
+
+/* FIN FECHA Y HORA SECCION */
+
     // Aquí va tu código JavaScript
 //         const checkbox_Desayuno = document.getElementById('checkboxMontoDesayuno');
 //         const input_Desayuno = document.getElementById('mostrarMontoDesayuno');

@@ -60,7 +60,28 @@
     font-weight: 400;
    
 }
-  .header .fecha , .header .fecha  a{
+.header .fecha{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.header .fecha .reloj{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+.header .fecha .reloj #fecha, #hora{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+  .header .fecha  a{
     display: flex;
     justify-content: center; 
     align-items: center;
@@ -133,6 +154,9 @@
     text-decoration: none;
     color: #fff;
     font-size: 20px;
+    /* background-color: #04225286; */
+    border-bottom: 1px solid #ffffff;
+    border-radius: 20px;
     
    }
    .menu .menu-item .option{
@@ -147,6 +171,6 @@
     border-radius: 15px;
    }
    .menu .menu-item .option:hover{
-    background-color: blue;
+    background-color: rgb(0, 0, 82);
     color: white;
    }
