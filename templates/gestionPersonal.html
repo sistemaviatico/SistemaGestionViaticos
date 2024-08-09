@@ -18,7 +18,7 @@
                     <select class="nombresEmpleado" name="empleadoUserid" id="nombresEmpleadoSelect" onchange="buscarNumeroEmpleado()">
                         <option value="">Seleccione un nombre</option>
                         {%for nombreEmpleado in nombresynumero%}
-                        <option class="optionempleado" value="{{nombreEmpleado[1]}}">{{nombreEmpleado[2]}}</option>
+                        <option class="optionempleado" value="{{nombreEmpleado[0]}}">{{nombreEmpleado[2]}}</option>
                         {%endfor%}
                     </select>
             </div>

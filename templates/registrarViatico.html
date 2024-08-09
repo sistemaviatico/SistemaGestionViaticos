@@ -120,7 +120,7 @@
                         onchange="buscarNumeroEmpleado()">
                         <option value="">Seleccione un nombre</option>
                         {%for nombretrabajador in nombreTrabajador%}
-                        <option class="optionempleado" value="{{nombretrabajador[1]}}">{{nombretrabajador[2]}}</option>
+                        <option class="optionempleado" value="{{nombretrabajador[0]}}">{{nombretrabajador[2]}}</option>
                         {%endfor%}
                     </select>
                     <div class="group-inputs">

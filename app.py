@@ -179,7 +179,7 @@ def listadoviatico():
     if request.method == "GET":
         select_viaticoInfoQuery = text(''' SELECT r.* , v."tipoviatico", u."nombresapellidos" FROM public."registro_viaticos" as r
                                        INNER JOIN public."tipos_viaticos" as v ON r."tipoviaticoid" = v."tipoviaticoid" 
-                                       INNER JOIN public."datos_trabajadores" as u ON r."numeroempleado" = u."usuarioid" ''')
+                                       INNER JOIN public."datos_trabajadores" as u ON r."numeroempleado" = u."numeroempleado" ''')
         viatico_info = db.execute(select_viaticoInfoQuery).fetchall()
     return render_template("listadoViaticos.html", viaticoInfo = viatico_info)
 
@@ -302,9 +302,9 @@ def gestion_personal():
 
         #Obtener los id del usuario
         id_trabajador = request.form.get('empleadoUserid')
-        print("idEmploy",id_trabajador)
+        
         #Obtener lo datos del usuario
-        obtener_trabajador = text('''SELECT * FROM public.datos_trabajadores WHERE "usuarioid" = :usuarioid''')
+        obtener_trabajador = text('''SELECT * FROM public.datos_trabajadores WHERE "numeroempleado" = :usuarioid''')
         resultado=db.execute(obtener_trabajador,{"usuarioid": id_trabajador}).fetchall()
         
         return render_template("gestionPersonal.html", nombresynumero = nombres_result, dataEmpleado = resultado)
@@ -312,7 +312,7 @@ def gestion_personal():
 #obtener data de los empleados
 @app.route('/get_numero_empleado/<int:empleado_id>', methods=['GET'])
 def get_numero_empleado(empleado_id):
-    obtener_trabajador = text('''SELECT * FROM public.datos_trabajadores WHERE "usuarioid" = :usuarioid''')
+    obtener_trabajador = text('''SELECT * FROM public.datos_trabajadores WHERE "numeroempleado" = :usuarioid''')
     resultado = db.execute(obtener_trabajador, {"usuarioid": empleado_id}).fetchone()
 
     if resultado:
